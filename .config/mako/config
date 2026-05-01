@@ -1,0 +1,27 @@
+# mako — Wayland notification daemon (Catppuccin Mocha)
+font=JetBrainsMono Nerd Font 11
+background-color=#1e1e2eee
+text-color=#cdd6f4
+border-color=#89b4fa
+border-size=1
+border-radius=10
+padding=12
+margin=8
+default-timeout=6000
+ignore-timeout=1
+max-icon-size=48
+icon-path=/usr/share/icons/Papirus-Dark
+layer=overlay
+anchor=top-right
+
+[urgency=low]
+border-color=#a6adc8
+default-timeout=4000
+
+[urgency=normal]
+border-color=#89b4fa
+
+[urgency=critical]
+border-color=#f38ba8
+text-color=#f38ba8
+default-timeout=0

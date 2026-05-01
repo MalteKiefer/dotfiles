@@ -1,0 +1,102 @@
+[general]
+live_config_reload = true
+
+[env]
+TERM = "alacritty"
+
+[window]
+opacity = 0.92
+blur = true
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+decorations = "none"
+dynamic_title = true
+title = "alacritty"
+
+[scrolling]
+history = 20000
+multiplier = 3
+
+[font]
+size = 10.0
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+offset = { x = 0, y = 0 }
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+blink_interval = 600
+unfocused_hollow = true
+thickness = 0.18
+
+[mouse]
+hide_when_typing = true
+
+[selection]
+save_to_clipboard = true
+
+[bell]
+animation = "EaseOutExpo"
+duration = 0
+color = "#ff3838"
+
+[colors.primary]
+background = "#0b0b0d"
+foreground = "#cfd1d4"
+dim_foreground = "#8a8c91"
+bright_foreground = "#ffffff"
+
+[colors.cursor]
+text = "#0b0b0d"
+cursor = "#ff3838"
+
+[colors.selection]
+text = "CellForeground"
+background = "#3a1014"
+
+[colors.normal]
+black   = "#101013"
+red     = "#ff3838"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#ff5e5e"
+green   = "#b4e08a"
+yellow  = "#ffd07a"
+blue    = "#9ab8ff"
+magenta = "#d0b8ff"
+cyan    = "#a8e0ff"
+white   = "#ffffff"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "Plus"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"

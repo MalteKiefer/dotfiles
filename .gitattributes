@@ -1,0 +1,11 @@
+# Force LF on all text files (configs, shell scripts, etc.)
+* text=auto eol=lf
+*.sh text eol=lf
+*.fish text eol=lf
+*.toml text eol=lf
+*.jsonc text eol=lf
+*.kdl text eol=lf
+*.css text eol=lf
+*.ini text eol=lf
+*.jpg binary
+*.png binary
