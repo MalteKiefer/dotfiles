@@ -1,153 +1,163 @@
-#format = """
-#[╭─user───❯](bold blue) $username
-#[┣─system─❯](bold yellow) $hostname
-#[┣─project❯](bold red) $directory$rust$git_branch$git_state$git_status$package$golang$terraform$docker_context$python$docker_context$nodejs
-#[╰─cmd────❯](bold green)
-#"""
-[username]
-style_user = "green bold"
-style_root = "red bold"
-format = "[$user]($style) "
+# starship — Catppuccin Mocha (matched to waybar/labwc).
+
+add_newline = true
+
+format = """
+[╭─](#89b4fa) $os$username[ at ](#6c7086)$hostname[ in ](#6c7086)$directory$git_branch$git_status$git_state$package$nodejs$rust$python$golang$cmd_duration
+[╰─❯](#89b4fa) $character"""
+
+right_format = """$time$battery"""
+
+palette = "mocha"
+
+[palettes.mocha]
+base       = "#1e1e2e"
+mantle     = "#181825"
+crust      = "#11111b"
+surface0   = "#313244"
+surface1   = "#45475a"
+surface2   = "#585b70"
+text       = "#cdd6f4"
+subtext1   = "#bac2de"
+subtext0   = "#a6adc8"
+overlay2   = "#9399b2"
+overlay1   = "#7f849c"
+overlay0   = "#6c7086"
+blue       = "#89b4fa"
+lavender   = "#b4befe"
+sapphire   = "#74c7ec"
+sky        = "#89dceb"
+teal       = "#94e2d5"
+green      = "#a6e3a1"
+yellow     = "#f9e2af"
+peach      = "#fab387"
+maroon     = "#eba0ac"
+red        = "#f38ba8"
+mauve      = "#cba6f7"
+pink       = "#f5c2e7"
+flamingo   = "#f2cdcd"
+rosewater  = "#f5e0dc"
+
+[character]
+success_symbol = "[❯](bold #89b4fa)"
+error_symbol = "[❯](bold #f38ba8)"
+vimcmd_symbol = "[❮](bold #94e2d5)"
+
+[os]
 disabled = false
+format = "[$symbol]($style)"
+style = "bold #89b4fa"
+
+[os.symbols]
+Fedora = " "
+Linux = " "
+Arch = " "
+Ubuntu = " "
+Debian = " "
+Macos = " "
+Windows = " "
+
+[username]
+style_user = "bold #94e2d5"
+style_root = "bold #f38ba8"
+format = "[$user]($style)"
 show_always = true
 
 [hostname]
 ssh_only = false
-format = 'on [$hostname](bold purple) '
-trim_at = "."
-disabled = false
+ssh_symbol = "  "
+format = "[$ssh_symbol$hostname](bold #89b4fa)"
 
-# Replace the "❯" symbol in the prompt with "➜"
-[character]                            # The name of the module we are configuring is "character"
-success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[✗](bold red)"
-
-#  
-# configure directory
 [directory]
-read_only = " "
-truncation_length = 10
-truncate_to_repo = true # truncates directory to root folder if in github repo
-style = "bold italic blue"
-
-[cmd_duration]
-min_time = 4
-show_milliseconds = false
-disabled = false
-style = "bold italic red"
-
-[aws]
-symbol = "  "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
-
-#[directory]
-#read_only = " "
-
-[docker_context]
-symbol = " "
-format = "via [$symbol$context]($style) "
-style = "blue bold"
-only_with_files = true
-detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
-detect_folders = []
-disabled = false
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
+style = "bold #f9e2af"
+format = "[$path]($style)[$read_only]($read_only_style)"
+read_only = "  "
+read_only_style = "#f38ba8"
+truncation_length = 4
+truncate_to_repo = false
+truncation_symbol = "…/"
 
 [git_branch]
-symbol = " "
+symbol = " "
+style = "bold #cba6f7"
+format = "[ on ](#6c7086)[$symbol$branch]($style)"
 
 [git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-stashed = "[${count}*](green)"
-modified = "[${count}+](yellow)"
-deleted =  "[${count}-](red)"
-conflicted =  "[${count}~](red)"
+style = "#f38ba8"
+format = "[ \\[$all_status$ahead_behind\\]]($style)"
+conflicted = "="
 ahead = "⇡${count}"
 behind = "⇣${count}"
-untracked = "[${count}?](blue)"
-staged = "[${count}+](green)"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
 
 [git_state]
-style =	"bold red"
-format = "[$state( $progress_current/$progress_total) ]($style)"
-rebase = "rebase"
-merge = "merge"
-revert = "revert"
-cherry_pick = "cherry"
-bisect = "bisect"
-am = "am"
-am_or_rebase = "am/rebase"
-
-[golang]
-symbol = " "
-
-[hg_branch]
-symbol = " "
-
-[java]
-symbol = " "
-
-[julia]
-symbol = " "
-
-[haskell]
-symbol = "λ "
-
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
+format = "\\([$state( $progress_current/$progress_total)](bold #f9e2af)\\) "
 
 [package]
-symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[python]
-symbol = "🐍 "
-#pyenv_version_name = true
-format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
-detect_extensions = ["py"]
-version_format = "v${raw}"
-
-[ruby]
-symbol = " "
-
-[rust]
-symbol = " "
-
-[scala]
-symbol = " "
-
-[shlvl]
-symbol = " "
-
-[swift]
-symbol = "ﯣ "
+symbol = " "
+style = "#94e2d5"
+format = "[ $symbol$version]($style)"
 
 [nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
+symbol = " "
+style = "#a6e3a1"
+format = "[ $symbol$version]($style)"
 
+[rust]
+symbol = " "
+style = "#fab387"
+format = "[ $symbol$version]($style)"
+
+[python]
+symbol = " "
+style = "#89b4fa"
+format = "[ $symbol$version( \\($virtualenv\\))]($style)"
+
+[golang]
+symbol = " "
+style = "#74c7ec"
+format = "[ $symbol$version]($style)"
+
+[cmd_duration]
+min_time = 1000
+format = "[ took ](#6c7086)[$duration](#f9e2af)"
+
+[time]
+disabled = false
+format = "[ $time](#6c7086)"
+time_format = "%H:%M:%S"
+utc_time_offset = "local"
+
+[battery]
+disabled = false
+format = "[ $symbol$percentage]($style)"
+discharging_symbol = " "
+charging_symbol = " "
+full_symbol = " "
+
+[[battery.display]]
+threshold = 25
+style = "#f38ba8"
+
+[[battery.display]]
+threshold = 60
+style = "#f9e2af"
+
+[[battery.display]]
+threshold = 100
+style = "#a6e3a1"
+
+[memory_usage]
+disabled = true
+
+[shell]
+disabled = true
+
+[line_break]
+disabled = false
