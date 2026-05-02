@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+read -r _ u1 n1 s1 i1 io1 ir1 sq1 _ < /proc/stat
+sleep 0.4
+read -r _ u2 n2 s2 i2 io2 ir2 sq2 _ < /proc/stat
+prev=$((u1+n1+s1+i1+io1+ir1+sq1))
+cur=$((u2+n2+s2+i2+io2+ir2+sq2))
+idle_d=$((i2-i1))
+total_d=$((cur-prev))
+cpu=$(( total_d > 0 ? (100*(total_d-idle_d))/total_d : 0 ))
+
+mem=$(LC_ALL=C free -h --si | awk '/^Mem:/ {printf "%s/%s", $3, $2}')
+load=$(awk '{print $1}' /proc/loadavg)
+temp=$(awk '{printf "%.0f°C", $1/1000}' /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
+
+printf '{"text":"%s%%","tooltip":"CPU: %s%%\\nRAM: %s\\nLoad: %s\\nTemp: %s"}\n' \
+  "$cpu" "$cpu" "$mem" "$load" "$temp"

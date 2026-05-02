@@ -15,18 +15,14 @@
     }
   },
 
-  "cpu": {
-    "interval": 2,
-    "format": "  {usage}%",
-    "tooltip": true,
-    "tooltip-format": "CPU {avg_frequency} GHz",
-    "on-click": "alacritty -e btop"
-  },
-
-  "memory": {
-    "interval": 5,
-    "format": "  {percentage}%",
-    "tooltip-format": "RAM: {used:0.1f} / {total:0.1f} GiB"
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 18,
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close",
+    "ignore-list": [],
+    "all-outputs": true
   },
 
   "clock": {
@@ -74,25 +70,28 @@
   },
 
   "network": {
-    "format-wifi": "  {essid}",
-    "format-ethernet": "󰈀  {ifname}",
-    "format-disconnected": "󰤭",
-    "format-disabled": "󰤭",
-    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+    "format-wifi": "{icon}",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤮",
+    "format-disabled": "󰤮",
+    "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+    "tooltip-format-wifi": "{essid}\nSignal: {signalStrength}%\n{ipaddr}",
     "tooltip-format-ethernet": "{ifname}: {ipaddr}",
+    "tooltip-format-disconnected": "Nicht verbunden",
     "on-click": "alacritty -e nmtui",
-    "interval": 5,
-    "max-length": 18
+    "interval": 5
   },
 
   "bluetooth": {
+    "format": "󰂯",
     "format-on": "󰂯",
     "format-off": "󰂲",
     "format-disabled": "󰂲",
-    "format-connected": "󰂱 {device_alias}",
-    "tooltip-format": "{controller_alias}\n{num_connections} connected",
-    "on-click": "alacritty -e bluetuith",
-    "max-length": 18
+    "format-connected": "󰂱",
+    "tooltip-format": "{controller_alias}\n{status}",
+    "tooltip-format-connected": "{controller_alias}\n{num_connections} verbunden\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+    "on-click": "alacritty -e bluetuith"
   },
 
   "pulseaudio": {
@@ -146,6 +145,14 @@
     "format-plugged": "󰚥  {capacity}%",
     "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "tooltip-format": "{timeTo}\n{power} W"
+  },
+
+  "custom/load": {
+    "format": "󰓅 {}",
+    "exec": "/home/pr0ph37/.local/bin/load-waybar",
+    "return-type": "json",
+    "interval": 3,
+    "on-click": "alacritty -e btop"
   },
 
   "custom/mullvad": {
