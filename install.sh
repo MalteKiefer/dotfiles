@@ -20,10 +20,11 @@ link() {
 }
 
 # .config tree
-for d in niri waybar alacritty foot kitty fuzzel rofi fastfetch fish mako gtklock yazi zathura git; do
+for d in niri waybar alacritty foot kitty fuzzel rofi fastfetch fish mako gtklock yazi zathura git gtk-3.0 gtk-4.0; do
     [[ -d "$REPO/.config/$d" ]] && link "$REPO/.config/$d" "$HOME/.config/$d"
 done
 link "$REPO/.config/starship.toml" "$HOME/.config/starship.toml"
+[[ -f "$REPO/.gtkrc-2.0" ]] && link "$REPO/.gtkrc-2.0" "$HOME/.gtkrc-2.0"
 
 # .local/bin scripts
 mkdir -p "$HOME/.local/bin"

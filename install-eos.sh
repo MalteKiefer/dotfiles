@@ -177,9 +177,11 @@ REPO_DESKTOP=(
 )
 
 AUR_DESKTOP=(
-  niriswitcher                # Alt-Tab-style window switcher for niri
-  xwayland-satellite          # XWayland for niri (X11 apps: jdownloader, mullvad-gui)
-  catppuccin-cursors-mocha    # cursor theme referenced in niri config
+  niriswitcher                       # Alt-Tab-style window switcher for niri
+  xwayland-satellite                 # XWayland for niri (X11 apps: jdownloader, mullvad-gui)
+  catppuccin-cursors-mocha           # cursor theme referenced in niri config
+  catppuccin-gtk-theme-mocha         # GTK 3/4 Catppuccin Mocha theme
+  papirus-folders-catppuccin-git     # Catppuccin folder colors for Papirus
 )
 
 REPO_NETWORK=(
@@ -564,6 +566,12 @@ user = "greeter"
       run_or_dry sudo chsh -s "$FISH_BIN" "$USER" \
         && ok "default shell -> $FISH_BIN (next login)"
     fi
+  fi
+
+  # Catppuccin Mocha folder colors for Papirus
+  if command -v papirus-folders >/dev/null 2>&1; then
+    run_or_dry sudo papirus-folders -C cat-mocha-blue -t Papirus-Dark \
+      && ok "Papirus folders -> Catppuccin Mocha blue"
   fi
 
   section "stage: config — verify services"
