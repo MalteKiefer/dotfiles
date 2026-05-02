@@ -20,7 +20,7 @@ link() {
 }
 
 # .config tree
-for d in niri waybar alacritty foot fuzzel fastfetch fish mako; do
+for d in niri waybar alacritty foot kitty fuzzel rofi fastfetch fish mako gtklock yazi zathura; do
     [[ -d "$REPO/.config/$d" ]] && link "$REPO/.config/$d" "$HOME/.config/$d"
 done
 link "$REPO/.config/starship.toml" "$HOME/.config/starship.toml"

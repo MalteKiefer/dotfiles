@@ -124,6 +124,7 @@ REPO_DRIVER=(
   power-profiles-daemon
   iio-sensor-proxy
   fprintd libfprint
+  android-udev
 )
 
 REPO_DESKTOP=(
@@ -145,8 +146,15 @@ REPO_DESKTOP=(
   mako libnotify
   # File manager + thumbnailers + mounts
   thunar thunar-volman thunar-archive-plugin tumbler gvfs gvfs-mtp
-  # Terminal
-  alacritty
+  yazi
+  # Terminals
+  alacritty kitty
+  # Launchers
+  rofi fuzzel
+  # Lock screen
+  gtklock
+  # Media keys + battery notifier deps
+  playerctl acpi
   # Media + viewers
   mpv
   zathura zathura-pdf-mupdf
@@ -155,8 +163,8 @@ REPO_DESKTOP=(
   element-desktop
   # Screen recording / sharing tools
   wf-recorder
-  # Polkit auth agent — kf6 variant matches existing niri config path
-  polkit-kde-agent
+  # Polkit auth agent — GNOME variant (path matches niri config)
+  polkit-gnome
   # Theming
   qt6ct papirus-icon-theme
   # German locale folder names (~/Bilder, ~/Dokumente …)
@@ -209,6 +217,7 @@ AUR_APPS=(
   filen-desktop-bin
   spotify
   claude-code
+  flutter
 )
 
 # ─── helpers ────────────────────────────────────────────────────────────────
