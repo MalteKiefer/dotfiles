@@ -7,6 +7,15 @@ fish_add_path -p $HOME/go/bin
 set -gx BUN_INSTALL "$HOME/.bun"
 set -gx GOPATH "$HOME/go"
 set -gx CARGO_HOME "$HOME/.cargo"
+
+# Android SDK (Android Studio default ~/Android/Sdk)
+set -gx ANDROID_HOME "$HOME/Android/Sdk"
+set -gx ANDROID_SDK_ROOT "$ANDROID_HOME"
+set -gx ANDROID_USER_HOME "$HOME/.android"
+fish_add_path -a "$ANDROID_HOME/cmdline-tools/latest/bin"
+fish_add_path -a "$ANDROID_HOME/platform-tools"
+fish_add_path -a "$ANDROID_HOME/emulator"
+
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx PAGER less

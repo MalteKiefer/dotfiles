@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Force JBR's native Wayland toolkit. xwayland-satellite hangs on JBR's
+# pre-init modal Dialog, so XToolkit deadlocks Studio. WLToolkit bypasses
+# Xwayland entirely.
+export _JAVA_OPTIONS="-Dawt.toolkit.name=WLToolkit ${_JAVA_OPTIONS:-}"
+exec /opt/android-studio/bin/studio.sh "$@"
