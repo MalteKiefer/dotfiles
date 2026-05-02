@@ -1,5 +1,11 @@
 [general]
+import = ["~/.config/alacritty/colors.toml"]
 live_config_reload = true
+working_directory = "None"
+
+[terminal.shell]
+program = "/usr/bin/fish"
+args = ["-l"]
 
 [env]
 TERM = "alacritty"
@@ -13,20 +19,36 @@ decorations = "none"
 dynamic_title = true
 title = "alacritty"
 
+[window.class]
+instance = "Alacritty"
+general = "Alacritty"
+
 [scrolling]
 history = 20000
 multiplier = 3
 
 [font]
-size = 10.0
-normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
-bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
-italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
-bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 11.0
 offset = { x = 0, y = 0 }
 
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+style = "Italic"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+style = "Bold Italic"
+
 [cursor]
-style = { shape = "Beam", blinking = "On" }
+style = { shape = "Block", blinking = "On" }
 blink_interval = 600
 unfocused_hollow = true
 thickness = 0.18
@@ -35,46 +57,17 @@ thickness = 0.18
 hide_when_typing = true
 
 [selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 save_to_clipboard = true
 
 [bell]
 animation = "EaseOutExpo"
-duration = 0
-color = "#ff3838"
+duration = 100
+color = "#F38BA8"
 
-[colors.primary]
-background = "#0b0b0d"
-foreground = "#cfd1d4"
-dim_foreground = "#8a8c91"
-bright_foreground = "#ffffff"
-
-[colors.cursor]
-text = "#0b0b0d"
-cursor = "#ff3838"
-
-[colors.selection]
-text = "CellForeground"
-background = "#3a1014"
-
-[colors.normal]
-black   = "#101013"
-red     = "#ff3838"
-green   = "#9ece6a"
-yellow  = "#e0af68"
-blue    = "#7aa2f7"
-magenta = "#bb9af7"
-cyan    = "#7dcfff"
-white   = "#a9b1d6"
-
-[colors.bright]
-black   = "#414868"
-red     = "#ff5e5e"
-green   = "#b4e08a"
-yellow  = "#ffd07a"
-blue    = "#9ab8ff"
-magenta = "#d0b8ff"
-cyan    = "#a8e0ff"
-white   = "#ffffff"
+[[mouse.bindings]]
+mouse = "Middle"
+action = "PasteSelection"
 
 [[keyboard.bindings]]
 key = "V"
@@ -85,6 +78,16 @@ action = "Paste"
 key = "C"
 mods = "Control|Shift"
 action = "Copy"
+
+[[keyboard.bindings]]
+key = "F"
+mods = "Control|Shift"
+action = "SearchForward"
+
+[[keyboard.bindings]]
+key = "B"
+mods = "Control|Shift"
+action = "SearchBackward"
 
 [[keyboard.bindings]]
 key = "Plus"
@@ -100,3 +103,28 @@ action = "DecreaseFontSize"
 key = "Key0"
 mods = "Control"
 action = "ResetFontSize"
+
+[[keyboard.bindings]]
+key = "PageUp"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollPageUp"
+
+[[keyboard.bindings]]
+key = "PageDown"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollPageDown"
+
+[[keyboard.bindings]]
+key = "Home"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollToTop"
+
+[[keyboard.bindings]]
+key = "End"
+mods = "Shift"
+mode = "~Alt"
+action = "ScrollToBottom"
+

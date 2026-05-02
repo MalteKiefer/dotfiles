@@ -1,112 +1,91 @@
+@import "./colors.css";
+
 * {
   font-family: "JetBrainsMono Nerd Font", "Noto Sans", sans-serif;
   font-size: 13px;
   font-weight: 600;
+  border: none;
+  border-radius: 0;
   min-height: 0;
+  padding: 0;
+  margin: 0;
 }
 
 window#waybar {
   background: rgba(30, 30, 46, 0.90);
-  color: #cdd6f4;
+  color: @foreground;
   border-radius: 12px;
   border: 1px solid rgba(205, 214, 244, 0.08);
 }
 
-#workspaces button {
+#custom-menu,
+#workspaces,
+#cpu,
+#memory,
+#clock,
+#mpris,
+#privacy,
+#tray,
+#custom-mullvad,
+#idle_inhibitor,
+#network,
+#bluetooth,
+#pulseaudio,
+#pulseaudio.microphone,
+#backlight,
+#power-profiles-daemon,
+#battery,
+#custom-power {
   padding: 0 8px;
   margin: 4px 2px;
   border-radius: 8px;
-  color: #a6adc8;
-  background: transparent;
-  transition: all 200ms ease;
-}
-#workspaces button:hover {
-  background: rgba(137, 180, 250, 0.15);
-  color: #89b4fa;
-}
-#workspaces button.active {
-  background: #89b4fa;
-  color: #1e1e2e;
-}
-#workspaces button.urgent {
-  background: #f38ba8;
-  color: #1e1e2e;
+  color: @foreground;
 }
 
-#taskbar {
-  background: transparent;
-}
-#taskbar button {
+#custom-menu        { color: @color4; padding-left: 10px; padding-right: 10px; }
+#clock              { color: @color4; }
+#mpris              { color: @color3; }
+#cpu                { color: @color5; }
+#memory             { color: @color6; }
+#privacy            { color: @color3; }
+
+#workspaces button {
   padding: 0 6px;
   margin: 4px 2px;
   border-radius: 8px;
-  color: #cdd6f4;
-  background: rgba(49, 50, 68, 0.55);
+  color: @color7;
+  background: transparent;
   transition: all 200ms ease;
-  min-width: 24px;
 }
-#taskbar button:hover {
-  background: rgba(137, 180, 250, 0.20);
-}
-#taskbar button.active {
-  background: #89b4fa;
-  color: #1e1e2e;
-}
-#taskbar button.minimized {
-  opacity: 0.55;
-}
+#workspaces button:hover    { background: rgba(137, 180, 250, 0.15); color: @color4; }
+#workspaces button.active   { background: @color4; color: @background; }
+#workspaces button.urgent   { background: @color1; color: @background; }
 
-#custom-menu,
-#window,
-#clock,
-#pulseaudio,
-#network,
-#bluetooth,
-#battery,
-#tray,
-#idle_inhibitor,
-#custom-power {
-  padding: 0 10px;
-  margin: 4px 2px;
-  border-radius: 8px;
-  background: rgba(49, 50, 68, 0.70);
-}
+#network.disconnected,
+#network.disabled,
+#bluetooth.disabled                  { color: @color1; }
+#network.wifi,
+#bluetooth.connected                 { color: @color2; }
+#pulseaudio.muted,
+#pulseaudio.microphone.source-muted  { color: @color1; }
+#battery.charging                    { color: @color2; }
+#battery.plugged                     { color: @color4; }
+#battery.warning                     { color: @color3; }
+#battery.critical                    { color: @color1; }
+#idle_inhibitor.activated            { color: @color3; }
+#custom-power                        { color: @color1; padding-right: 10px; }
 
-#custom-menu {
-  color: #89b4fa;
-  font-size: 16px;
-  padding: 0 12px;
-}
-
-#clock {
-  color: #f9e2af;
-  background: rgba(249, 226, 175, 0.10);
-}
-
-#pulseaudio { color: #94e2d5; }
-#network    { color: #89b4fa; }
-#bluetooth  { color: #74c7ec; }
-#battery    { color: #a6e3a1; }
-#battery.charging { color: #f9e2af; }
-#battery.warning  { color: #fab387; }
-#battery.critical { color: #f38ba8; background: rgba(243, 139, 168, 0.18); }
-
-#custom-power {
-  color: #f38ba8;
-  background: rgba(243, 139, 168, 0.15);
-}
-
-#custom-mullvad.connected    { color: #a6e3a1; background: rgba(166, 227, 161, 0.12); }
-#custom-mullvad.disconnected { color: #f38ba8; background: rgba(243, 139, 168, 0.12); }
-#custom-mullvad.connecting   { color: #f9e2af; background: rgba(249, 226, 175, 0.12); }
-
-#tray > .needs-attention {
-  -gtk-icon-effect: highlight;
-}
+#custom-mullvad.connecting           { color: @color3; }
+#custom-mullvad.connected            { color: @color2; }
+#custom-mullvad.disconnected         { color: @color7; }
 
 tooltip {
-  background: #1e1e2e;
-  border: 1px solid #45475a;
+  background: @background;
+  border: 1px solid @color4;
   border-radius: 8px;
-  color: #cdd6f4;
+}
+tooltip * {
+  color: @foreground;
+  margin: 2px;
+  background: transparent;
 }

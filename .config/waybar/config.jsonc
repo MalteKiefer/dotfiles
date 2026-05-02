@@ -1,136 +1,28 @@
 {
+  "reload_style_on_change": true,
   "layer": "top",
   "position": "top",
-  "height": 30,
+  "height": 32,
   "spacing": 6,
   "margin-top": 4,
   "margin-left": 8,
   "margin-right": 8,
+  "include": ["~/.config/waybar/modules.json"],
 
-  "modules-left": ["custom/menu", "wlr/workspaces", "wlr/taskbar"],
-  "modules-center": ["clock"],
+  "modules-left":   ["custom/menu", "niri/workspaces", "cpu", "memory"],
+  "modules-center": ["clock", "mpris"],
   "modules-right": [
+    "privacy",
+    "tray",
     "custom/mullvad",
     "idle_inhibitor",
-    "backlight",
+    "network",
+    "bluetooth",
+    "pulseaudio#microphone",
     "pulseaudio",
+    "backlight",
     "power-profiles-daemon",
-    "tray",
     "battery",
     "custom/power"
-  ],
-
-  "custom/menu": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "fuzzel"
-  },
-
-  "wlr/workspaces": {
-    "format": "{name}",
-    "on-click": "activate",
-    "sort-by-number": true,
-    "all-outputs": true
-  },
-
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "icon-size": 16,
-    "icon-theme": "Papirus-Dark",
-    "tooltip-format": "{title}",
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "on-click-right": "minimize",
-    "ignore-list": []
-  },
-
-  "clock": {
-    "format": "  {:%a %d.%m. %H:%M}",
-    "format-alt": "{:%Y-%m-%d %H:%M:%S}",
-    "tooltip-format": "<tt><small>{calendar}</small></tt>",
-    "calendar": {
-      "mode": "month",
-      "weeks-pos": "left",
-      "format": {
-        "months": "<span color='#cdd6f4'><b>{}</b></span>",
-        "days":   "<span color='#bac2de'>{}</span>",
-        "weeks":  "<span color='#74c7ec'>W{}</span>",
-        "today":  "<span color='#f38ba8'><b>{}</b></span>"
-      }
-    }
-  },
-
-  "tray": { "spacing": 8, "icon-size": 16 },
-
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": { "activated": "", "deactivated": "" }
-  },
-
-  "pulseaudio": {
-    "format": "{icon}  {volume}%",
-    "format-muted": "",
-    "format-icons": { "default": ["", "", ""] },
-    "on-click": "pavucontrol",
-    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "scroll-step": 5,
-    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-  },
-
-  "network": {
-    "format-wifi": "  {essid}",
-    "format-ethernet": "  {ifname}",
-    "format-disconnected": "",
-    "tooltip-format": "{ifname}: {ipaddr}",
-    "on-click": "nm-connection-editor"
-  },
-
-  "bluetooth": {
-    "format": "  {status}",
-    "format-disabled": "",
-    "format-connected": "  {device_alias}",
-    "on-click": "blueman-manager"
-  },
-
-  "backlight": {
-    "device": "amdgpu_bl1",
-    "format": "{icon}  {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
-    "scroll-step": 5,
-    "on-scroll-up": "brightnessctl set 5%+",
-    "on-scroll-down": "brightnessctl set 5%-"
-  },
-
-  "power-profiles-daemon": {
-    "format": "{icon}",
-    "tooltip-format": "Profile: {profile}\nDriver: {driver}",
-    "format-icons": {
-      "default": "",
-      "performance": "",
-      "balanced": "",
-      "power-saver": ""
-    }
-  },
-
-  "battery": {
-    "format": "{icon}  {capacity}%",
-    "format-charging": "  {capacity}%",
-    "format-icons": ["", "", "", "", ""],
-    "states": { "warning": 25, "critical": 10 }
-  },
-
-  "custom/mullvad": {
-    "exec": "/home/pr0ph37/.local/bin/mullvad-waybar",
-    "return-type": "json",
-    "interval": 5,
-    "on-click": "sh -c 'mullvad status | head -1 | grep -q Connected && mullvad disconnect || mullvad connect'",
-    "on-click-right": "mullvad-gui"
-  },
-
-  "custom/power": {
-    "format": "",
-    "tooltip": false,
-    "on-click": "wlogout || systemctl poweroff"
-  }
+  ]
 }

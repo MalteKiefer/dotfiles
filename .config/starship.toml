@@ -3,8 +3,8 @@
 add_newline = true
 
 format = """
-[╭─](#89b4fa) $os$username[ at ](#6c7086)$hostname[ in ](#6c7086)$directory$git_branch$git_status$git_state$package$nodejs$rust$python$golang$cmd_duration
-[╰─❯](#89b4fa) $character"""
+[╭─](blue) $os$username[ at ](overlay0)$hostname[ in ](overlay0)$directory$git_branch$git_status$git_state$package$nodejs$rust$python$golang$cmd_duration
+[╰─❯](blue) $character"""
 
 right_format = """$time$battery"""
 
@@ -39,51 +39,46 @@ flamingo   = "#f2cdcd"
 rosewater  = "#f5e0dc"
 
 [character]
-success_symbol = "[❯](bold #89b4fa)"
-error_symbol = "[❯](bold #f38ba8)"
-vimcmd_symbol = "[❮](bold #94e2d5)"
+success_symbol = "[❯](bold blue)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold teal)"
 
 [os]
 disabled = false
 format = "[$symbol]($style)"
-style = "bold #89b4fa"
+style = "bold blue"
 
 [os.symbols]
-Fedora = " "
-Linux = " "
 Arch = " "
-Ubuntu = " "
-Debian = " "
-Macos = " "
-Windows = " "
+Linux = " "
 
 [username]
-style_user = "bold #94e2d5"
-style_root = "bold #f38ba8"
+style_user = "bold teal"
+style_root = "bold red"
 format = "[$user]($style)"
 show_always = true
 
 [hostname]
 ssh_only = false
 ssh_symbol = "  "
-format = "[$ssh_symbol$hostname](bold #89b4fa)"
+format = "[$ssh_symbol$hostname](bold blue)"
 
 [directory]
-style = "bold #f9e2af"
+style = "bold yellow"
 format = "[$path]($style)[$read_only]($read_only_style)"
 read_only = "  "
-read_only_style = "#f38ba8"
+read_only_style = "red"
 truncation_length = 4
 truncate_to_repo = false
 truncation_symbol = "…/"
 
 [git_branch]
 symbol = " "
-style = "bold #cba6f7"
-format = "[ on ](#6c7086)[$symbol$branch]($style)"
+style = "bold mauve"
+format = "[ on ](overlay0)[$symbol$branch]($style)"
 
 [git_status]
-style = "#f38ba8"
+style = "red"
 format = "[ \\[$all_status$ahead_behind\\]]($style)"
 conflicted = "="
 ahead = "⇡${count}"
@@ -97,40 +92,40 @@ renamed = "»"
 deleted = "✘"
 
 [git_state]
-format = "\\([$state( $progress_current/$progress_total)](bold #f9e2af)\\) "
+format = "\\([$state( $progress_current/$progress_total)](bold yellow)\\) "
 
 [package]
 symbol = " "
-style = "#94e2d5"
+style = "teal"
 format = "[ $symbol$version]($style)"
 
 [nodejs]
 symbol = " "
-style = "#a6e3a1"
+style = "green"
 format = "[ $symbol$version]($style)"
 
 [rust]
 symbol = " "
-style = "#fab387"
+style = "peach"
 format = "[ $symbol$version]($style)"
 
 [python]
 symbol = " "
-style = "#89b4fa"
+style = "blue"
 format = "[ $symbol$version( \\($virtualenv\\))]($style)"
 
 [golang]
 symbol = " "
-style = "#74c7ec"
+style = "sapphire"
 format = "[ $symbol$version]($style)"
 
 [cmd_duration]
 min_time = 1000
-format = "[ took ](#6c7086)[$duration](#f9e2af)"
+format = "[ took ](overlay0)[$duration](yellow)"
 
 [time]
 disabled = false
-format = "[ $time](#6c7086)"
+format = "[ $time](overlay0)"
 time_format = "%H:%M:%S"
 utc_time_offset = "local"
 
@@ -143,15 +138,15 @@ full_symbol = " "
 
 [[battery.display]]
 threshold = 25
-style = "#f38ba8"
+style = "red"
 
 [[battery.display]]
 threshold = 60
-style = "#f9e2af"
+style = "yellow"
 
 [[battery.display]]
 threshold = 100
-style = "#a6e3a1"
+style = "green"
 
 [memory_usage]
 disabled = true

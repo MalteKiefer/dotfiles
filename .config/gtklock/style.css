@@ -1,0 +1,48 @@
+window {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.unlock-form {
+    background: rgba(30, 30, 46, 0.85);
+    color: #CDD6F4;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid rgba(137, 180, 250, 0.4);
+}
+
+#clock-label {
+    color: #CDD6F4;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 64pt;
+    font-weight: bold;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+entry {
+    background: rgba(49, 50, 68, 0.9);
+    color: #CDD6F4;
+    border: 1px solid #89B4FA;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 14pt;
+}
+
+entry:focus {
+    border-color: #B4BEFE;
+}
+
+button {
+    background: #89B4FA;
+    color: #1E1E2E;
+    border-radius: 10px;
+    padding: 8px 16px;
+}
+button:hover {
+    background: #B4BEFE;
+}
+
+label.error {
+    color: #F38BA8;
+}

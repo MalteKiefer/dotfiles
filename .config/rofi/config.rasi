@@ -1,0 +1,118 @@
+configuration {
+    modi: "drun,run,filebrowser,window";
+    case-sensitive: false;
+    cycle: true;
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    matching: "fuzzy";
+    tokenize: true;
+    drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+    drun-match-fields: "name,generic,exec,categories,keywords";
+    display-drun: "Apps";
+    display-run: "Run";
+    display-window: "Windows";
+    display-filebrowser: "Files";
+    terminal: "alacritty";
+    font: "JetBrainsMono Nerd Font 12";
+    sort: false;
+    threads: 0;
+    click-to-exit: true;
+    kb-cancel: "Escape,Control+g,Control+bracketleft";
+    kb-accept-entry: "Control+m,Return,KP_Enter";
+    kb-row-down: "Down,Control+n,Alt+j";
+    kb-row-up:   "Up,Control+p,Alt+k";
+    kb-mode-next: "Shift+Right,Control+Tab";
+    kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";
+}
+
+@import "colors/catppuccin-mocha.rasi"
+
+* {
+    border-radius: 12px;
+    spacing: 0;
+    font: "JetBrainsMono Nerd Font 12";
+    text-color: @foreground;
+    background-color: transparent;
+}
+
+window {
+    transparency:    "real";
+    location:        center;
+    anchor:          center;
+    fullscreen:      false;
+    width:           640px;
+    background-color: @background;
+    border:          1px;
+    border-color:    @border-color;
+    border-radius:   16px;
+    padding:         12px;
+}
+
+mainbox {
+    enabled:   true;
+    spacing:   10px;
+    children: [ "inputbar", "message", "listview" ];
+}
+
+inputbar {
+    enabled:   true;
+    spacing:   10px;
+    padding:   10px 14px;
+    border-radius: 10px;
+    background-color: @background-alt;
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled: true;
+    text-color: @selected;
+}
+
+entry {
+    enabled: true;
+    placeholder: "Search…";
+    placeholder-color: #7F849C;
+    text-color: @foreground;
+}
+
+listview {
+    enabled:    true;
+    columns:    1;
+    lines:      8;
+    cycle:      true;
+    dynamic:    true;
+    scrollbar:  false;
+    spacing:    4px;
+    fixed-height: false;
+}
+
+element {
+    spacing:   10px;
+    padding:   8px 12px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-color: @foreground;
+}
+element selected.normal {
+    background-color: @selected;
+    text-color: @background;
+}
+element-icon {
+    size:       1.1em;
+    background-color: transparent;
+    text-color: inherit;
+}
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+message {
+    background-color: @background-alt;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+textbox {
+    text-color: @foreground;
+}
