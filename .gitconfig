@@ -1,26 +1,70 @@
 [user]
 	name = Malte Kiefer
-	email = malte.kiefer@intellytec.de
+	email = malte.kiefer@mailbox.org
 
-[alias]
-	st = status -sb
-	ci = commit
-	all = commit -am
-	br = branch
-	co = checkout
-	di = diff
-	dic = diff --cached
-	lg = log -p
-	lol = log --graph --decorate --pretty=oneline --abbrev-commit
-	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
-	ls = ls-files
-	# Show files ignored by git:
-	ign = ls-files -o -i --exclude-standard
+[core]
+	editor = nvim
+	whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	quotepath = false
+	excludesfile = ~/.gitignore
+	hooksPath = ~/.config/git/hooks
+	pager = less -FRX
+	autocrlf = input
 
-	shoot = push origin --delete
-	unstage = reset HEAD --
-	prev = checkout -
-	discard = checkout -- 
+[init]
+	defaultBranch = main
+
+[push]
+	default = current
+	autoSetupRemote = true
+	followTags = true
+
+[pull]
+	rebase = false
+	ff = only
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[merge]
+	conflictStyle = zdiff3
+	tool = nvimdiff
+
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	mnemonicPrefix = true
+	renames = true
+
+[status]
+	short = true
+	branch = true
+	showUntrackedFiles = all
+
+[log]
+	date = iso
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = -version:refname
+
+[rerere]
+	enabled = true
+	autoupdate = true
+
+[commit]
+	verbose = true
+
+[help]
+	autocorrect = prompt
 
 [color]
 	ui = auto
@@ -32,23 +76,46 @@
 	added = yellow
 	changed = green
 	untracked = cyan
-[core]
-	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-	editor = nvim
-	quotepath = false
-	excludesfile = ~/.gitignore
-[github]
-	user = fatih
+
 [mergetool]
 	keepBackup = true
+
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
-[push]
-	default = current
+
 [url "git@github.com:"]
 	insteadOf = https://github.com/
-[pull]
-	rebase = false
-[init]
-	defaultBranch = main
+
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+
+[alias]
+	st = status -sb
+	ci = commit
+	all = commit -am
+	br = branch
+	co = checkout
+	sw = switch
+	di = diff
+	dic = diff --cached
+	lg = log -p
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	last = log -1 HEAD --stat
+	ls = ls-files
+	ign = ls-files -o -i --exclude-standard
+	shoot = push origin --delete
+	unstage = reset HEAD --
+	prev = checkout -
+	discard = checkout --
+	amend = commit --amend --no-edit
+	wip = !git add -A && git commit -m 'WIP'
+	undo = reset --soft HEAD~1
+	root = rev-parse --show-toplevel
+	contributors = shortlog -sn --no-merges
+	aliases = !git config --get-regexp '^alias\\.' | sed 's/alias\\.//; s/ / = /'

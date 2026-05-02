@@ -185,7 +185,7 @@ AUR_DESKTOP=(
 REPO_NETWORK=(
   networkmanager networkmanager-openvpn openvpn
   network-manager-applet
-  bluez bluez-utils blueman
+  bluez bluez-utils
 )
 
 REPO_PRINTER=(
@@ -198,7 +198,7 @@ REPO_PRINTER=(
   avahi nss-mdns
 )
 
-AUR_NETWORK=( mullvad-vpn-bin )
+AUR_NETWORK=( mullvad-vpn-bin bluetuith-bin )
 
 AUR_PRINTER=(
   brother-mfc-l3770cdw

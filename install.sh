@@ -20,7 +20,7 @@ link() {
 }
 
 # .config tree
-for d in niri waybar alacritty foot kitty fuzzel rofi fastfetch fish mako gtklock yazi zathura; do
+for d in niri waybar alacritty foot kitty fuzzel rofi fastfetch fish mako gtklock yazi zathura git; do
     [[ -d "$REPO/.config/$d" ]] && link "$REPO/.config/$d" "$HOME/.config/$d"
 done
 link "$REPO/.config/starship.toml" "$HOME/.config/starship.toml"
@@ -34,9 +34,12 @@ done
 # Wallpaper
 link "$REPO/assets/wallpaper.jpg" "$HOME/.wallpaper.jpg"
 
-# Git config (interactive — overwrite warning)
+# Git config + global gitignore
 if [[ -f "$REPO/.gitconfig" ]]; then
     link "$REPO/.gitconfig" "$HOME/.gitconfig"
+fi
+if [[ -f "$REPO/.gitignore" ]]; then
+    link "$REPO/.gitignore" "$HOME/.gitignore"
 fi
 
 echo

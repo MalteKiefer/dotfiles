@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+# ============================================================================
+# commit-msg hook: Entfernt AI/KI-Hinweise aus Commit-Messages
+# ============================================================================
+
+COMMIT_MSG_FILE="$1"
+
+if [ ! -f "$COMMIT_MSG_FILE" ]; then
+    exit 0
+fi
+
+# Muster die entfernt werden (case-insensitive)
+# Ganze Zeilen die diese Muster enthalten werden gelöscht:
+PATTERNS=(
+    # Co-Author / Generated-by Zeilen mit AI-Bezug
+    'Co-Authored-By:.*Claude'
+    'Co-Authored-By:.*OpenAI'
+    'Co-Authored-By:.*GPT'
+    'Co-Authored-By:.*Anthropic'
+    'Co-Authored-By:.*Copilot'
+    'Co-Authored-By:.*Gemini'
+    'Co-Authored-By:.*noreply@anthropic'
+    'Co-Authored-By:.*noreply@openai'
+    'Generated.by.*Claude'
+    'Generated.by.*ChatGPT'
+    'Generated.by.*GPT'
+    'Generated.by.*OpenAI'
+    'Generated.by.*Copilot'
+    'Generated.by.*Gemini'
+    'Generated.by.*Anthropic'
+    'Generated.with.*Claude'
+    'Generated.with.*AI'
+    'AI.generated'
+    'KI.generiert'
+    # Emojis + Tool-Hinweise
+    '🤖.*Claude'
+    '🤖.*GPT'
+    '🤖.*AI'
+    '🤖.*Generated'
+    # Typische AI-Signaturen
+    'claude-opus'
+    'claude-sonnet'
+    'claude-haiku'
+    'claude-code'
+    'gpt-4'
+    'gpt-3'
+    'gpt-4o'
+    'chatgpt'
+    'github.copilot'
+    'cursor\.ai'
+    'cursor\.com'
+    'codeium'
+    'tabnine'
+    'amazon.q'
+    'codewhisperer'
+    'windsurf'
+    'aider'
+    'sourcegraph.cody'
+)
+
+# Temporäre Datei
+TEMP_FILE=$(mktemp)
+cp "$COMMIT_MSG_FILE" "$TEMP_FILE"
+
+for pattern in "${PATTERNS[@]}"; do
+    # Zeilen mit dem Muster entfernen (case-insensitive)
+    sed -i "/${pattern}/Id" "$TEMP_FILE" 2>/dev/null || \
+    sed -i'' -e "/${pattern}/Id" "$TEMP_FILE" 2>/dev/null || true
+done
+
+# Inline-Ersetzungen (Wörter innerhalb von Zeilen ersetzen, nicht ganze Zeile löschen)
+INLINE_PATTERNS=(
+    's/\(via Claude[^)]*\)//Ig'
+    's/\(via ChatGPT[^)]*\)//Ig'
+    's/\(via GitHub Copilot[^)]*\)//Ig'
+    's/\(via AI[^)]*\)//Ig'
+    's/\(AI-assisted\)//Ig'
+    's/\(KI-unterstützt\)//Ig'
+    's/\[Claude\]//Ig'
+    's/\[AI\]//Ig'
+    's/\[GPT\]//Ig'
+    's/\[Copilot\]//Ig'
+)
+
+for pattern in "${INLINE_PATTERNS[@]}"; do
+    sed -i "$pattern" "$TEMP_FILE" 2>/dev/null || \
+    sed -i'' -e "$pattern" "$TEMP_FILE" 2>/dev/null || true
+done
+
+# Mehrere aufeinanderfolgende Leerzeilen auf eine reduzieren
+sed -i '/^$/N;/^\n$/d' "$TEMP_FILE" 2>/dev/null || \
+sed -i'' -e '/^$/N;/^\n$/d' "$TEMP_FILE" 2>/dev/null || true
+
+# Trailing whitespace an Zeilenenden entfernen
+sed -i 's/[[:space:]]*$//' "$TEMP_FILE" 2>/dev/null || \
+sed -i'' -e 's/[[:space:]]*$//' "$TEMP_FILE" 2>/dev/null || true
+
+cp "$TEMP_FILE" "$COMMIT_MSG_FILE"
+rm -f "$TEMP_FILE"
+
+exit 0

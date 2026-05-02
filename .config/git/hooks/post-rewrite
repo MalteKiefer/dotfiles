@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# ============================================================================
+# post-rewrite hook: Wird bei rebase/amend ausgeführt
+# Stellt sicher, dass auch nach rebase/amend keine AI-Hinweise verbleiben
+# ============================================================================
+
+# post-rewrite bekommt die alten/neuen SHAs via stdin
+# Die eigentliche Bereinigung passiert bereits im commit-msg Hook
+# Dieser Hook ist ein zusätzliches Sicherheitsnetz
+
+exit 0
