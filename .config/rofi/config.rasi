@@ -28,91 +28,103 @@ configuration {
 @import "colors/catppuccin-mocha.rasi"
 
 * {
-    border-radius: 12px;
     spacing: 0;
-    font: "JetBrainsMono Nerd Font 12";
+    font: "JetBrainsMono Nerd Font 13";
     text-color: @foreground;
     background-color: transparent;
 }
 
 window {
-    transparency:    "real";
-    location:        center;
-    anchor:          center;
-    fullscreen:      false;
-    width:           640px;
+    transparency:     "real";
+    location:         center;
+    anchor:           center;
+    fullscreen:       false;
+    width:            620px;
     background-color: @background;
-    border:          1px;
-    border-color:    @border-color;
-    border-radius:   16px;
-    padding:         12px;
+    border:           1px;
+    border-color:     @border-color;
+    border-radius:    12px;
+    padding:          10px;
 }
 
 mainbox {
-    enabled:   true;
-    spacing:   10px;
+    enabled:  true;
+    spacing:  8px;
     children: [ "inputbar", "message", "listview" ];
 }
 
 inputbar {
-    enabled:   true;
-    spacing:   10px;
-    padding:   10px 14px;
-    border-radius: 10px;
+    enabled:          true;
+    spacing:          10px;
+    padding:          8px 12px;
+    margin:           2px;
+    border-radius:    8px;
     background-color: @background-alt;
-    children: [ "prompt", "entry" ];
+    children:         [ "prompt", "entry" ];
 }
 
 prompt {
-    enabled: true;
+    enabled:    true;
     text-color: @selected;
 }
 
 entry {
-    enabled: true;
-    placeholder: "Search…";
-    placeholder-color: #7F849C;
-    text-color: @foreground;
+    enabled:           true;
+    placeholder:       "Search…";
+    placeholder-color: @placeholder-color;
+    text-color:        @foreground;
+    cursor:            text;
 }
 
 listview {
-    enabled:    true;
-    columns:    1;
-    lines:      8;
-    cycle:      true;
-    dynamic:    true;
-    scrollbar:  false;
-    spacing:    4px;
+    enabled:      true;
+    columns:      1;
+    lines:        8;
+    cycle:        true;
+    dynamic:      true;
+    scrollbar:    false;
+    spacing:      2px;
+    padding:      2px;
     fixed-height: false;
 }
 
 element {
-    spacing:   10px;
-    padding:   8px 12px;
-    border-radius: 8px;
+    spacing:          10px;
+    padding:          6px 10px;
+    margin:           2px;
+    border-radius:    8px;
     background-color: transparent;
-    text-color: @foreground;
+    text-color:       @foreground;
 }
-element selected.normal {
-    background-color: @selected;
-    text-color: @background;
-}
+element normal.normal     { background-color: transparent;     text-color: @foreground; }
+element normal.urgent     { background-color: transparent;     text-color: @urgent; }
+element normal.active     { background-color: transparent;     text-color: @active; }
+element alternate.normal  { background-color: transparent;     text-color: @foreground; }
+element alternate.urgent  { background-color: transparent;     text-color: @urgent; }
+element alternate.active  { background-color: transparent;     text-color: @active; }
+element selected.normal   { background-color: @selected;       text-color: @selected-fg; }
+element selected.urgent   { background-color: @urgent;         text-color: @selected-fg; }
+element selected.active   { background-color: @active;         text-color: @selected-fg; }
+
 element-icon {
-    size:       1.1em;
+    size:             1.15em;
     background-color: transparent;
-    text-color: inherit;
+    text-color:       inherit;
+    vertical-align:   0.5;
 }
 element-text {
     background-color: transparent;
-    text-color: inherit;
-    vertical-align: 0.5;
+    text-color:       inherit;
+    vertical-align:   0.5;
 }
 
 message {
     background-color: @background-alt;
-    border-radius: 10px;
-    padding: 8px 12px;
+    border-radius:    8px;
+    padding:          6px 10px;
+    margin:           2px;
 }
 textbox {
     text-color: @foreground;
+    background-color: transparent;
 }

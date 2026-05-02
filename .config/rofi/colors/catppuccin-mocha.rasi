@@ -1,9 +1,13 @@
 * {
-    background:     #1E1E2E;
-    background-alt: #313244;
-    foreground:     #CDD6F4;
-    selected:       #89B4FA;
-    active:         #A6E3A1;
-    urgent:         #F38BA8;
-    border-color:   #45475A;
+    background:        #1E1E2EEB;
+    background-alt:    #313244CC;
+    foreground:        #CDD6F4;
+    placeholder-color: #7F849C;
+    selected:          #89B4FA;
+    selected-fg:       #1E1E2E;
+    active:            #A6E3A1;
+    urgent:            #F38BA8;
+    accent:            #F5C2E7;
+    border-color:      #CDD6F426;
+    hover:             #89B4FA26;
 }
