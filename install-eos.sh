@@ -108,8 +108,16 @@ REPO_BASE=(
   github-cli
   nodejs npm yarn
   php composer
+  go
   sqlite
   dbeaver
+  docker docker-compose
+  # German spell-check
+  aspell aspell-de
+  # CLI utilities
+  btop glances duf meld tldr
+  # Archive tools
+  unrar unzip
 )
 
 REPO_DRIVER=(
@@ -174,18 +182,19 @@ REPO_DESKTOP=(
   wl-clipboard
   grim slurp
   qt5-wayland qt6-wayland
+  # XWayland for niri (X11 apps: jdownloader, mullvad-gui) — now in extra
+  xwayland-satellite
 )
 
 AUR_DESKTOP=(
   niriswitcher                       # Alt-Tab-style window switcher for niri
-  xwayland-satellite                 # XWayland for niri (X11 apps: jdownloader, mullvad-gui)
   catppuccin-cursors-mocha           # cursor theme referenced in niri config
   catppuccin-gtk-theme-mocha         # GTK 3/4 Catppuccin Mocha theme
   papirus-folders-catppuccin-git     # Catppuccin folder colors for Papirus
 )
 
 REPO_NETWORK=(
-  networkmanager networkmanager-openvpn openvpn
+  networkmanager networkmanager-openvpn networkmanager-openconnect openvpn
   network-manager-applet
   bluez bluez-utils
 )
